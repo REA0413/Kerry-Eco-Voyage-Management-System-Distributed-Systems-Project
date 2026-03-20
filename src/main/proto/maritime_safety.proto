@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+// Java Configuration Options
+option java_multiple_files = true;
+option java_package = "generated.grpc.CA.maritimesafety";
+option java_outer_classname = "MaritimeSafetyProto";
+
+// =================================================================
+// Service 1: Maritime Safety & Environmental Monitor
+// =================================================================
+service MaritimeSafetyMonitor {
+  // Functionality 1: Simple RPC
+  rpc CheckSeaConditions (ConditionRequest) returns (ConditionReport) {}
+  
+  // Functionality 2: Server-side Streaming
+  rpc StreamEmergencyAlerts (VesselRequest) returns (stream SafetyAlert) {}
+}
+
+// Requests and Responses for Service 1
+message ConditionRequest {
+  int32 area_code = 1; 
+}
+
+message ConditionReport {
+  float wave_height = 1; 
+  float wind_speed = 2; 
+  bool is_safe = 3; 
+}
+
+message VesselRequest {
+  int32 vessel_id = 1; 
+}
+
+message SafetyAlert {
+  string alert_message = 1; 
+  int32 risk_level = 2; 
+}

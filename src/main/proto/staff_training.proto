@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+// Java Configuration Options
+option java_multiple_files = true;
+option java_package = "generated.grpc.CA.stafftraining";
+option java_outer_classname = "StaffTrainingProto";
+
+// =================================================================
+// Service 3: Sustainable Staffs Training Hub
+// =================================================================
+service StaffTrainingHub {
+  // Functionality: Bidirectional Streaming
+  rpc InteractiveNavigationTraining (stream TraineeAction) returns (stream InstructorFeedback) {}
+}
+
+// Requests and Responses for Service 3
+message TraineeAction {
+  string staff_id = 1; 
+  float rudder_angle = 2; 
+  int32 engine_throttle = 3; 
+}
+
+message InstructorFeedback {
+  string instruction = 1; 
+  float current_error_margin = 2; 
+  bool session_passed = 3; 
+}
