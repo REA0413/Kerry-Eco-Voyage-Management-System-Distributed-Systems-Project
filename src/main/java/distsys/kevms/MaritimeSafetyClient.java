@@ -21,10 +21,24 @@ import java.util.Iterator;
 public class MaritimeSafetyClient {
     public static void main(String[] args) {
         
-        // 1. Create a channel to connect to the server on localhost port 50051
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
-                .usePlaintext() // No encryption for local testing
+        // 1. Discover the service
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local."); // This listens for any gRPC service
+
+        String host = discovery.getHost();
+        int port = discovery.getPort();
+
+        System.out.println("Discovered MaritimeSafety at " + host + ":" + port);
+
+        // 2. Use the discovered address to build the channel
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
+                .usePlaintext()
                 .build();
+        
+        // 1. Create a channel to connect to the server on localhost port 50051
+//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051)
+//                .usePlaintext() // No encryption for local testing
+//                .build();
         
         // 2. Create a Blocking Stub (used to make standard, synchronous RPC calls)
         MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub = 

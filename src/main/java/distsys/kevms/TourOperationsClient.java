@@ -22,10 +22,23 @@ import java.util.concurrent.TimeUnit;
 
 public class TourOperationsClient {
     public static void main(String[] args) throws InterruptedException {
-        
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
+        // 1. Discover the service
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local."); // This listens for any gRPC service
+
+        String host = discovery.getHost();
+        int port = discovery.getPort();
+
+        System.out.println("Discovered TourOperations at " + host + ":" + port);
+
+        // 2. Use the discovered address to build the channel
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
+        
+//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052)
+//                .usePlaintext()
+//                .build();
         
         // We need a Blocking Stub for the Simple RPC
         TourOperationsTrackerGrpc.TourOperationsTrackerBlockingStub blockingStub = 

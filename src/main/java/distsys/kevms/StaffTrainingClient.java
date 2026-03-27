@@ -20,10 +20,23 @@ import java.util.concurrent.TimeUnit;
 
 public class StaffTrainingClient {
     public static void main(String[] args) throws InterruptedException {
-        
-        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50053)
+        // 1. Discover the service
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local."); // This listens for any gRPC service
+
+        String host = discovery.getHost();
+        int port = discovery.getPort();
+
+        System.out.println("Discovered StaffTraining at " + host + ":" + port);
+
+        // 2. Use the discovered address to build the channel
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port)
                 .usePlaintext()
                 .build();
+        
+//        ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50053)
+//                .usePlaintext()
+//                .build();
         
         // Async stub for Bidirectional streaming
         StaffTrainingHubGrpc.StaffTrainingHubStub asyncStub = StaffTrainingHubGrpc.newStub(channel);
