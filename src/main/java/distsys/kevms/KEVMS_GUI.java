@@ -7,6 +7,11 @@ package distsys.kevms;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import generated.grpc.CA.maritimesafety.*;
+// Import the generated classes for the Tour Operations service
+import generated.grpc.CA.touroperations.*;
+
+// Import the StreamObserver for the Client-Streaming functionality
+import io.grpc.stub.StreamObserver;
 
 /**
  *
@@ -17,6 +22,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(KEVMS_GUI.class.getName());
     private String safetyHost;
     private int safetyPort;
+    private String tourHost;
+    private int tourPort;
             
     /**
      * Creates new form KEVMS_GUI
@@ -46,8 +53,16 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         txtVesselId = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
+        btnFindTour = new javax.swing.JButton();
+        lblStatusTour = new javax.swing.JLabel();
+        txtStaffId = new javax.swing.JTextField();
+        btnGetPerformance = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtResultTour = new javax.swing.JTextArea();
+        btnStartVoyage = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,20 +138,100 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                     .addComponent(txtVesselId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Maritime Safety", jPanel2);
-        jTabbedPane1.addTab("Tour Operations", jTabbedPane2);
-        jTabbedPane1.addTab("Staff Training", jTabbedPane3);
+
+        btnFindTour.setText("Find Your Service");
+        btnFindTour.addActionListener(this::btnFindTourActionPerformed);
+
+        lblStatusTour.setText("Status: Disconnected");
+
+        txtStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtStaffId.setText("Input Staff ID");
+
+        btnGetPerformance.setText("Get Performance Score");
+        btnGetPerformance.addActionListener(this::btnGetPerformanceActionPerformed);
+
+        txtResultTour.setColumns(20);
+        txtResultTour.setRows(5);
+        jScrollPane2.setViewportView(txtResultTour);
+
+        btnStartVoyage.setBackground(new java.awt.Color(153, 255, 153));
+        btnStartVoyage.setText("Simulate Voyage Telemetry");
+        btnStartVoyage.addActionListener(this::btnStartVoyageActionPerformed);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnStartVoyage, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtStaffId)
+                                    .addComponent(btnFindTour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblStatusTour)
+                                    .addComponent(btnGetPerformance))))
+                        .addGap(0, 197, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFindTour)
+                    .addComponent(lblStatusTour))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtStaffId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGetPerformance))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnStartVoyage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Tour Operations", jPanel1);
+
+        jButton5.setText("jButton5");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton5)
+                .addContainerGap(418, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton5)
+                .addContainerGap(247, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Staff Training", jPanel3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,26 +241,61 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        ServiceDiscovery discovery = new ServiceDiscovery();
-        discovery.discover("_grpc._tcp.local.");
-
-        String host = discovery.getHost();
-        int port = discovery.getPort();        if (host != null) {
-            lblStatusSafety.setText("Connected to: " + host + ":" + port);
-            // Save these to global variables so other buttons can use them
-            this.safetyHost = host;
-            this.safetyPort = port;
-        } else {
-            lblStatusSafety.setText("Service not found!");
+        if (safetyHost == null || safetyPort == 0) {
+            txtResultSafety.append("Error: Please click 'Find Service' first!\n");
+            return;
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void txtAreaCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaCodeActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtAreaCodeActionPerformed
+        // Start a new thread so the UI stays responsive while waiting for alerts
+        new Thread(() -> {
+            ManagedChannel channel = null;
+            try {
+                int vesselId = Integer.parseInt(txtVesselId.getText());
+
+                channel = ManagedChannelBuilder.forAddress(safetyHost, safetyPort)
+                .usePlaintext()
+                .build();
+
+                MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub
+                = MaritimeSafetyMonitorGrpc.newBlockingStub(channel);
+
+                VesselRequest request = VesselRequest.newBuilder()
+                .setVesselId(vesselId)
+                .build();
+
+                txtResultSafety.append(">>> Starting alert monitor for Vessel: " + vesselId + "\n");
+
+                // This line returns an Iterator that waits for the server to send data
+                java.util.Iterator<SafetyAlert> alerts = stub.streamEmergencyAlerts(request);
+
+                // This while-loop blocks the thread until a new alert arrives
+                while (alerts.hasNext()) {
+                    SafetyAlert alert = alerts.next();
+
+                    // Use SwingUtilities to safely update the GUI from a background thread
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        txtResultSafety.append("ALERT [Risk " + alert.getRiskLevel() + "]: "
+                            + alert.getAlertMessage() + "\n");
+                    });
+                }
+
+                javax.swing.SwingUtilities.invokeLater(() -> {
+                    txtResultSafety.append(">>> Alert stream ended by server.\n");
+                });
+
+            } catch (NumberFormatException e) {
+                txtResultSafety.append("Input Error: Vessel ID must be a number.\n");
+            } catch (Exception e) {
+                txtResultSafety.append("Streaming Error: " + e.getMessage() + "\n");
+            } finally {
+                if (channel != null) {
+                    channel.shutdown();
+                }
+            }
+        }).start(); // Don't forget to start the thread!
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -180,19 +310,19 @@ public class KEVMS_GUI extends javax.swing.JFrame {
             int areaCode = Integer.parseInt(txtAreaCode.getText());
 
             // 3. Create the Channel and Stub
-            // (Note: In a real app, you might keep the channel open, but for a simple CA, 
-            // creating it here is fine)
+            // (Note: In a real app, you might keep the channel open, but for a simple CA,
+                // creating it here is fine)
             ManagedChannel channel = ManagedChannelBuilder.forAddress(safetyHost, safetyPort)
-                    .usePlaintext()
-                    .build();
+            .usePlaintext()
+            .build();
 
             MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub
-                    = MaritimeSafetyMonitorGrpc.newBlockingStub(channel);
+            = MaritimeSafetyMonitorGrpc.newBlockingStub(channel);
 
             // 4. Build the Request
             ConditionRequest request = ConditionRequest.newBuilder()
-                    .setAreaCode(areaCode)
-                    .build();
+            .setAreaCode(areaCode)
+            .build();
 
             // 5. Call the Server (The Simple RPC)
             ConditionReport response = stub.checkSeaConditions(request);
@@ -213,61 +343,127 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void txtAreaCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAreaCodeActionPerformed
         // TODO add your handling code here:
-        if (safetyHost == null || safetyPort == 0) {
-            txtResultSafety.append("Error: Please click 'Find Service' first!\n");
+
+    }//GEN-LAST:event_txtAreaCodeActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local.");
+
+        String host = discovery.getHost();
+        int port = discovery.getPort();        if (host != null) {
+            lblStatusSafety.setText("Connected to: " + host + ":" + port);
+            // Save these to global variables so other buttons can use them
+            this.safetyHost = host;
+            this.safetyPort = port;
+        } else {
+            lblStatusSafety.setText("Service not found!");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnFindTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTourActionPerformed
+        // TODO add your handling code here:
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local.");
+
+        // In a real scenario, you'd filter by name "TourOperations" 
+        // For now, we'll assume it finds the correct one or use the host/port logic
+        this.tourHost = discovery.getHost();
+        this.tourPort = discovery.getPort();
+
+        if (tourHost != null) {
+            lblStatusTour.setText("Connected to: " + tourHost + ":" + tourPort);
+        } else {
+            lblStatusTour.setText("Service not found!");
+        }
+    }//GEN-LAST:event_btnFindTourActionPerformed
+
+    private void btnGetPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetPerformanceActionPerformed
+        // TODO add your handling code here:
+        if (tourHost == null) {
+            txtResultTour.append("Error: Find service first.\n");
             return;
         }
 
-        // Start a new thread so the UI stays responsive while waiting for alerts
+        ManagedChannel channel = ManagedChannelBuilder.forAddress(tourHost, tourPort).usePlaintext().build();
+        try {
+            int staffId = Integer.parseInt(txtStaffId.getText());
+            TourOperationsTrackerGrpc.TourOperationsTrackerBlockingStub stub = TourOperationsTrackerGrpc.newBlockingStub(channel);
+
+            StaffRequest request = StaffRequest.newBuilder().setStaffId(staffId).build();
+            PerformanceScore response = stub.getStaffPerformance(request);
+
+            txtResultTour.append("Staff ID " + staffId + " Efficiency: " + response.getEfficiencyRating() + "%\n");
+        } catch (Exception e) {
+            txtResultTour.append("Error: " + e.getMessage() + "\n");
+        } finally {
+            channel.shutdown();
+        }
+    }//GEN-LAST:event_btnGetPerformanceActionPerformed
+
+    private void btnStartVoyageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartVoyageActionPerformed
+        // TODO add your handling code here:
+        if (tourHost == null) {
+            txtResultTour.append("Error: Find service first.\n");
+            return;
+        }
+
         new Thread(() -> {
-            ManagedChannel channel = null;
-            try {
-                int vesselId = Integer.parseInt(txtVesselId.getText());
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(tourHost, tourPort).usePlaintext().build();
+            TourOperationsTrackerGrpc.TourOperationsTrackerStub asyncStub = TourOperationsTrackerGrpc.newStub(channel);
 
-                channel = ManagedChannelBuilder.forAddress(safetyHost, safetyPort)
-                        .usePlaintext()
-                        .build();
-
-                MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub
-                        = MaritimeSafetyMonitorGrpc.newBlockingStub(channel);
-
-                VesselRequest request = VesselRequest.newBuilder()
-                        .setVesselId(vesselId)
-                        .build();
-
-                txtResultSafety.append(">>> Starting alert monitor for Vessel: " + vesselId + "\n");
-
-                // This line returns an Iterator that waits for the server to send data
-                java.util.Iterator<SafetyAlert> alerts = stub.streamEmergencyAlerts(request);
-
-                // This while-loop blocks the thread until a new alert arrives
-                while (alerts.hasNext()) {
-                    SafetyAlert alert = alerts.next();
-
-                    // Use SwingUtilities to safely update the GUI from a background thread
+            StreamObserver<VoyageSummary> responseObserver = new StreamObserver<VoyageSummary>() {
+                @Override
+                public void onNext(VoyageSummary summary) {
                     javax.swing.SwingUtilities.invokeLater(() -> {
-                        txtResultSafety.append("ALERT [Risk " + alert.getRiskLevel() + "]: "
-                                + alert.getAlertMessage() + "\n");
+                        txtResultTour.append("----------------------------\n");
+                        txtResultTour.append("SERVER RESPONSE: Voyage Summary Received!\n");
+                        txtResultTour.append("Total Distance: " + summary.getTotalDistance() + "km\n");
+                        txtResultTour.append("Avg Efficiency: " + summary.getAverageEfficiency() + "%\n");
+                        txtResultTour.append("----------------------------\n");
                     });
                 }
 
-                javax.swing.SwingUtilities.invokeLater(() -> {
-                    txtResultSafety.append(">>> Alert stream ended by server.\n");
-                });
+                @Override
+                public void onError(Throwable t) {
+                    javax.swing.SwingUtilities.invokeLater(() -> txtResultTour.append("Stream Error: " + t.getMessage() + "\n"));
+                }
 
-            } catch (NumberFormatException e) {
-                txtResultSafety.append("Input Error: Vessel ID must be a number.\n");
-            } catch (Exception e) {
-                txtResultSafety.append("Streaming Error: " + e.getMessage() + "\n");
-            } finally {
-                if (channel != null) {
+                @Override
+                public void onCompleted() {
                     channel.shutdown();
                 }
+            };
+
+            StreamObserver<TelemetryData> requestObserver = asyncStub.recordVoyageTelemetry(responseObserver);
+
+            try {
+                javax.swing.SwingUtilities.invokeLater(() -> txtResultTour.append(">>> Starting Telemetry Stream...\n"));
+
+                // Point 1
+                TelemetryData p1 = TelemetryData.newBuilder().setLatitude(51.772).setLongitude(-10.539).setCurrentFuelFlow(4.2f).build();
+                javax.swing.SwingUtilities.invokeLater(() -> txtResultTour.append("Sending Telemetry: Lat " + p1.getLatitude() + ", Lon " + p1.getLongitude() + "\n"));
+                requestObserver.onNext(p1);
+
+                Thread.sleep(1500); // Wait a bit so you can see the GUI update
+
+                // Point 2
+                TelemetryData p2 = TelemetryData.newBuilder().setLatitude(51.778).setLongitude(-10.545).setCurrentFuelFlow(4.1f).build();
+                javax.swing.SwingUtilities.invokeLater(() -> txtResultTour.append("Sending Telemetry: Lat " + p2.getLatitude() + ", Lon " + p2.getLongitude() + "\n"));
+                requestObserver.onNext(p2);
+
+                // Finalizing
+                javax.swing.SwingUtilities.invokeLater(() -> txtResultTour.append(">>> All telemetry sent. Waiting for summary...\n"));
+                requestObserver.onCompleted();
+
+            } catch (InterruptedException e) {
+                requestObserver.onError(e);
             }
-        }).start(); // Don't forget to start the thread!
-    }//GEN-LAST:event_jButton3ActionPerformed
+        }).start();
+    }//GEN-LAST:event_btnStartVoyageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,19 +491,27 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFindTour;
+    private javax.swing.JButton btnGetPerformance;
+    private javax.swing.JButton btnStartVoyage;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JLabel lblStatusSafety;
+    private javax.swing.JLabel lblStatusTour;
     private javax.swing.JTextField txtAreaCode;
     private javax.swing.JTextArea txtResultSafety;
+    private javax.swing.JTextArea txtResultTour;
+    private javax.swing.JTextField txtStaffId;
     private javax.swing.JTextField txtVesselId;
     // End of variables declaration//GEN-END:variables
 }
