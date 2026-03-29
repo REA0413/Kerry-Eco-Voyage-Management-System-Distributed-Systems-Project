@@ -7,8 +7,8 @@ package distsys.kevms;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import generated.grpc.CA.maritimesafety.*;
-// Import the generated classes for the Tour Operations service
 import generated.grpc.CA.touroperations.*;
+import generated.grpc.CA.stafftraining.*;
 
 // Import the StreamObserver for the Client-Streaming functionality
 import io.grpc.stub.StreamObserver;
@@ -24,12 +24,23 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     private int safetyPort;
     private String tourHost;
     private int tourPort;
+    private String trainingHost;
+    private int trainingPort;
             
     /**
      * Creates new form KEVMS_GUI
      */
     public KEVMS_GUI() {
         initComponents();
+        // Custom styling for the Home Tab message
+        txtHomeWelcome.setText("Welcome to KEVMS\n\n"
+                + "Use the buttons below or the tabs above to access:\n"
+                + "1. Maritime Safety: Real-time sea conditions and vessel alerts.\n"
+                + "2. Tour Operations: Fleet efficiency and telemetry tracking.\n"
+                + "3. Staff Training: Interactive navigation simulation for trainees.");
+        txtHomeWelcome.setWrapStyleWord(true);
+        txtHomeWelcome.setLineWrap(true);
+        txtHomeWelcome.setEditable(false);
     }
 
     /**
@@ -42,6 +53,13 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     private void initComponents() {
 
         jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel4 = new javax.swing.JPanel();
+        btnNavSafety = new javax.swing.JButton();
+        btnNavTour = new javax.swing.JButton();
+        btnNavTraining = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtHomeWelcome = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         lblStatusSafety = new javax.swing.JLabel();
@@ -62,9 +80,69 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         txtResultTour = new javax.swing.JTextArea();
         btnStartVoyage = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        jButton5 = new javax.swing.JButton();
+        btnFindTraining = new javax.swing.JButton();
+        lblStatusTraining = new javax.swing.JLabel();
+        txtTrainingStaffId = new javax.swing.JTextField();
+        btnStartTraining = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        txtResultTraining = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnNavSafety.setText("Maritime Safety");
+        btnNavSafety.addActionListener(this::btnNavSafetyActionPerformed);
+
+        btnNavTour.setText("Tour Operations");
+        btnNavTour.addActionListener(this::btnNavTourActionPerformed);
+
+        btnNavTraining.setText("Staff Training");
+        btnNavTraining.addActionListener(this::btnNavTrainingActionPerformed);
+
+        jLabel3.setText("KEVMS");
+
+        txtHomeWelcome.setEditable(false);
+        txtHomeWelcome.setColumns(20);
+        txtHomeWelcome.setRows(5);
+        txtHomeWelcome.setText("Welcome to the KEVMS (Kerry Eco Voyage Management System)!\nThis dashboard allows you to monitor sea conditions, track fleet performance, and conduct interactive staff training.");
+        txtHomeWelcome.setOpaque(false);
+        jScrollPane4.setViewportView(txtHomeWelcome);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(btnNavSafety, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnNavTour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnNavTraining, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jScrollPane4)
+                            .addComponent(jLabel3))))
+                .addGap(87, 87, 87))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnNavSafety)
+                    .addComponent(btnNavTour)
+                    .addComponent(btnNavTraining))
+                .addContainerGap(73, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Home", jPanel4);
 
         jButton1.setText("Find Service");
         jButton1.addActionListener(this::jButton1ActionPerformed);
@@ -118,7 +196,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel1))))
-                        .addGap(0, 157, Short.MAX_VALUE)))
+                        .addGap(0, 140, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -139,7 +217,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -183,7 +261,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblStatusTour)
                                     .addComponent(btnGetPerformance))))
-                        .addGap(0, 197, Short.MAX_VALUE)))
+                        .addGap(0, 180, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -206,7 +284,20 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Tour Operations", jPanel1);
 
-        jButton5.setText("jButton5");
+        btnFindTraining.setText("Find Training Hub");
+        btnFindTraining.addActionListener(this::btnFindTrainingActionPerformed);
+
+        lblStatusTraining.setText("Status: Disconnected");
+
+        txtTrainingStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTrainingStaffId.setText("Staff Name");
+
+        btnStartTraining.setText("Start Navigation Simulation");
+        btnStartTraining.addActionListener(this::btnStartTrainingActionPerformed);
+
+        txtResultTraining.setColumns(20);
+        txtResultTraining.setRows(5);
+        jScrollPane3.setViewportView(txtResultTraining);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -214,15 +305,33 @@ public class KEVMS_GUI extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
-                .addContainerGap(418, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtTrainingStaffId)
+                            .addComponent(btnFindTraining, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblStatusTraining)
+                            .addComponent(btnStartTraining))
+                        .addGap(0, 159, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton5)
-                .addContainerGap(247, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFindTraining)
+                    .addComponent(lblStatusTraining))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTrainingStaffId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnStartTraining))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Staff Training", jPanel3);
@@ -231,7 +340,9 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane1)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -465,6 +576,95 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         }).start();
     }//GEN-LAST:event_btnStartVoyageActionPerformed
 
+    private void btnFindTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFindTrainingActionPerformed
+        // TODO add your handling code here:
+        ServiceDiscovery discovery = new ServiceDiscovery();
+        discovery.discover("_grpc._tcp.local.");
+
+        this.trainingHost = discovery.getHost();
+        this.trainingPort = discovery.getPort();
+
+        if (trainingHost != null) {
+            lblStatusTraining.setText("Connected: " + trainingHost + ":" + trainingPort);
+        } else {
+            lblStatusTraining.setText("Service not found!");
+        }
+    }//GEN-LAST:event_btnFindTrainingActionPerformed
+
+    private void btnStartTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartTrainingActionPerformed
+        // TODO add your handling code here:
+        if (trainingHost == null) {
+            txtResultTraining.append("Error: Find service first.\n");
+            return;
+        }
+
+        new Thread(() -> {
+            ManagedChannel channel = ManagedChannelBuilder.forAddress(trainingHost, trainingPort).usePlaintext().build();
+            StaffTrainingHubGrpc.StaffTrainingHubStub asyncStub = StaffTrainingHubGrpc.newStub(channel);
+
+            // 1. Define how we handle messages ARRIVING from the server (Instructor)
+            StreamObserver<InstructorFeedback> responseObserver = new StreamObserver<InstructorFeedback>() {
+                @Override
+                public void onNext(InstructorFeedback feedback) {
+                    javax.swing.SwingUtilities.invokeLater(() -> {
+                        txtResultTraining.append("[INSTRUCTOR]: " + feedback.getInstruction()
+                                + " (Score: " + feedback.getCurrentErrorMargin() + ")\n");
+                    });
+                }
+
+                @Override
+                public void onError(Throwable t) {
+                    txtResultTraining.append("Training Error: " + t.getMessage() + "\n");
+                }
+
+                @Override
+                public void onCompleted() {
+                    txtResultTraining.append(">>> Training Session Finalized by Instructor.\n");
+                    channel.shutdown();
+                }
+            };
+
+            // 2. Start the bidirectional stream
+            StreamObserver<TraineeAction> requestObserver = asyncStub.interactiveNavigationTraining(responseObserver);
+
+            try {
+                String name = txtTrainingStaffId.getText();
+                txtResultTraining.append(">>> Starting Session for " + name + "...\n");
+
+                // Action 1
+                txtResultTraining.append("[YOU]: Hard turn to 15 degrees.\n");
+                requestObserver.onNext(TraineeAction.newBuilder().setStaffId(name).setRudderAngle(15.0f).setEngineThrottle(60).build());
+                Thread.sleep(2000);
+
+                // Action 2
+                txtResultTraining.append("[YOU]: Adjusting to 5 degrees.\n");
+                requestObserver.onNext(TraineeAction.newBuilder().setStaffId(name).setRudderAngle(5.0f).setEngineThrottle(50).build());
+                Thread.sleep(2000);
+
+                // Tell the server we are finished
+                requestObserver.onCompleted();
+
+            } catch (InterruptedException e) {
+                requestObserver.onError(e);
+            }
+        }).start();
+    }//GEN-LAST:event_btnStartTrainingActionPerformed
+
+    private void btnNavSafetyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavSafetyActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_btnNavSafetyActionPerformed
+
+    private void btnNavTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavTourActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_btnNavTourActionPerformed
+
+    private void btnNavTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNavTrainingActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_btnNavTrainingActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -492,26 +692,38 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFindTour;
+    private javax.swing.JButton btnFindTraining;
     private javax.swing.JButton btnGetPerformance;
+    private javax.swing.JButton btnNavSafety;
+    private javax.swing.JButton btnNavTour;
+    private javax.swing.JButton btnNavTraining;
+    private javax.swing.JButton btnStartTraining;
     private javax.swing.JButton btnStartVoyage;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblStatusSafety;
     private javax.swing.JLabel lblStatusTour;
+    private javax.swing.JLabel lblStatusTraining;
     private javax.swing.JTextField txtAreaCode;
+    private javax.swing.JTextArea txtHomeWelcome;
     private javax.swing.JTextArea txtResultSafety;
     private javax.swing.JTextArea txtResultTour;
+    private javax.swing.JTextArea txtResultTraining;
     private javax.swing.JTextField txtStaffId;
+    private javax.swing.JTextField txtTrainingStaffId;
     private javax.swing.JTextField txtVesselId;
     // End of variables declaration//GEN-END:variables
 }
