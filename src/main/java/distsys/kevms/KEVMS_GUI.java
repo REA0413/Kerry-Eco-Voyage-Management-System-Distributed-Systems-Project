@@ -75,10 +75,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         checkSeaConditionBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultSafety = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         txtVesselId = new javax.swing.JTextField();
         startMonitoringBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         findTourOperationsServicebtn = new javax.swing.JButton();
         lblStatusTour = new javax.swing.JLabel();
@@ -157,7 +155,15 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         lblStatusSafety.setText("Status: Disconnected");
 
-        txtAreaCode.setText("Area Code Input");
+        txtAreaCode.setText("Input Area Code");
+        txtAreaCode.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtAreaCodeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtAreaCodeFocusLost(evt);
+            }
+        });
         txtAreaCode.addActionListener(this::txtAreaCodeActionPerformed);
 
         checkSeaConditionBtn.setText("Check Conditions");
@@ -167,14 +173,19 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         txtResultSafety.setRows(5);
         jScrollPane1.setViewportView(txtResultSafety);
 
-        jLabel1.setText("Vessel ID");
-
-        txtVesselId.setText("Vessel ID Input");
+        txtVesselId.setText("Input Vessel ID");
+        txtVesselId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtVesselIdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtVesselIdFocusLost(evt);
+            }
+        });
+        txtVesselId.addActionListener(this::txtVesselIdActionPerformed);
 
         startMonitoringBtn.setText("Start Monitoring Alerts");
         startMonitoringBtn.addActionListener(this::startMonitoringBtnActionPerformed);
-
-        jLabel2.setText("Area Code");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -184,27 +195,21 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(findMaritimeSafetyServicebtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblStatusSafety))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtVesselId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(startMonitoringBtn))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(txtAreaCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(checkSeaConditionBtn)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1))))
-                        .addGap(0, 140, Short.MAX_VALUE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtVesselId)
+                                .addComponent(txtAreaCode))
+                            .addGap(18, 18, 18)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(startMonitoringBtn)
+                                .addComponent(checkSeaConditionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(199, 199, 199))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(findMaritimeSafetyServicebtn)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblStatusSafety)
+                            .addGap(138, 138, 138))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -217,13 +222,11 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtAreaCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(checkSeaConditionBtn)
-                    .addComponent(jLabel2))
+                    .addComponent(checkSeaConditionBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtVesselId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(startMonitoringBtn)
-                    .addComponent(jLabel1))
+                    .addComponent(startMonitoringBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addContainerGap())
@@ -238,6 +241,14 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         txtStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtStaffId.setText("Input Staff ID");
+        txtStaffId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtStaffIdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtStaffIdFocusLost(evt);
+            }
+        });
 
         btnGetPerformance.setText("Get Performance Score");
         btnGetPerformance.addActionListener(this::btnGetPerformanceActionPerformed);
@@ -285,8 +296,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                     .addComponent(btnGetPerformance))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnStartVoyage)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -298,7 +309,15 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         lblStatusTraining.setText("Status: Disconnected");
 
         txtTrainingStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTrainingStaffId.setText("Staff Name");
+        txtTrainingStaffId.setText("Input Staff Name");
+        txtTrainingStaffId.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtTrainingStaffIdFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtTrainingStaffIdFocusLost(evt);
+            }
+        });
 
         btnStartTraining.setText("Start Navigation Simulation");
         btnStartTraining.addActionListener(this::btnStartTrainingActionPerformed);
@@ -363,7 +382,10 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     
     private void startMonitoringBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startMonitoringBtnActionPerformed
         // TODO add your handling code here:
-        if (safetyHost == null || safetyPort == 0) return;
+        if (safetyHost == null || safetyPort == 0){
+            txtResultSafety.append("Error: Please click 'Find Service' first!\n");
+            return;
+        }
 
         new Thread(() -> {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(safetyHost, safetyPort).usePlaintext().build();
@@ -503,7 +525,10 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
     private void btnGetPerformanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGetPerformanceActionPerformed
         // TODO add your handling code here:
-        if (tourHost == null) return;
+        if (tourHost == null) {
+            txtResultTour.append("Error: Please click 'Find Service' first!\n");
+            return;
+        }
 
         ManagedChannel channel = ManagedChannelBuilder.forAddress(tourHost, tourPort).usePlaintext().build();
         try {
@@ -525,7 +550,10 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
     private void btnStartVoyageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartVoyageActionPerformed
         // TODO add your handling code here:
-        if (tourHost == null) return;
+        if (tourHost == null) {
+            txtResultTour.append("Error: Please click 'Find Service' first!\n");
+            return;
+        }
 
         new Thread(() -> {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(tourHost, tourPort).usePlaintext().build();
@@ -594,7 +622,10 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
     private void btnStartTrainingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartTrainingActionPerformed
         // TODO add your handling code here:
-        if (trainingHost == null) return;
+        if (trainingHost == null) {
+            txtResultTraining.append("Error: Please click 'Find Service' first!\n");
+            return;
+        }
 
         new Thread(() -> {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(trainingHost, trainingPort).usePlaintext().build();
@@ -658,6 +689,74 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         jTabbedPane1.setSelectedIndex(3);
     }//GEN-LAST:event_btnNavTrainingActionPerformed
 
+    private void txtAreaCodeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAreaCodeFocusGained
+        // TODO add your handling code here:
+        // When I click into the box, if the text is still the placeholder, clear it.
+        if (txtAreaCode.getText().equals("Input Area Code")) {
+            txtAreaCode.setText("");
+        }
+    }//GEN-LAST:event_txtAreaCodeFocusGained
+
+    private void txtAreaCodeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtAreaCodeFocusLost
+        // TODO add your handling code here:
+        // When the user is not clicking to the box, put the placeholder back.
+        if (txtAreaCode.getText().isEmpty()) {
+            txtAreaCode.setText("Input Area Code");
+        }
+    }//GEN-LAST:event_txtAreaCodeFocusLost
+
+    private void txtVesselIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVesselIdFocusGained
+        // TODO add your handling code here:
+        // When I click into the box, if the text is still the placeholder, clear it.
+        if (txtVesselId.getText().equals("Input Vessel ID")) {
+            txtVesselId.setText("");
+        }
+    }//GEN-LAST:event_txtVesselIdFocusGained
+
+    private void txtVesselIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtVesselIdFocusLost
+        // TODO add your handling code here:
+        // When the user is not clicking to the box, put the placeholder back.
+        if (txtVesselId.getText().isEmpty()) {
+            txtVesselId.setText("Input Vessel ID");
+        }
+    }//GEN-LAST:event_txtVesselIdFocusLost
+
+    private void txtStaffIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStaffIdFocusGained
+        // TODO add your handling code here:
+        // When I click into the box, if the text is still the placeholder, clear it.
+        if (txtStaffId.getText().equals("Input Staff ID")) {
+            txtStaffId.setText("");
+        }
+    }//GEN-LAST:event_txtStaffIdFocusGained
+
+    private void txtStaffIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtStaffIdFocusLost
+        // TODO add your handling code here:
+        // When the user is not clicking to the box, put the placeholder back.
+        if (txtStaffId.getText().isEmpty()) {
+            txtStaffId.setText("Input Staff ID");
+        }
+    }//GEN-LAST:event_txtStaffIdFocusLost
+
+    private void txtVesselIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtVesselIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVesselIdActionPerformed
+
+    private void txtTrainingStaffIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTrainingStaffIdFocusGained
+        // TODO add your handling code here:
+        // When I click into the box, if the text is still the placeholder, clear it.
+        if (txtTrainingStaffId.getText().equals("Input Staff Name")) {
+            txtTrainingStaffId.setText("");
+        }
+    }//GEN-LAST:event_txtTrainingStaffIdFocusGained
+
+    private void txtTrainingStaffIdFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTrainingStaffIdFocusLost
+        // TODO add your handling code here:
+        // When the user is not clicking to the box, put the placeholder back.
+        if (txtTrainingStaffId.getText().isEmpty()) {
+            txtTrainingStaffId.setText("Input Staff Name");
+        }
+    }//GEN-LAST:event_txtTrainingStaffIdFocusLost
+
     /**
      * @param args the command line arguments
      */
@@ -694,8 +793,6 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     private javax.swing.JButton findMaritimeSafetyServicebtn;
     private javax.swing.JButton findTourOperationsServicebtn;
     private javax.swing.JButton findTrainingHubServicebtn;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

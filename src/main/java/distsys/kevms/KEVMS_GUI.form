@@ -158,34 +158,25 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="findMaritimeSafetyServicebtn" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="lblStatusSafety" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtVesselId" max="32767" attributes="0"/>
+                                      <Component id="txtAreaCode" max="32767" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtVesselId" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="startMonitoringBtn" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="txtAreaCode" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                              <Component id="checkSeaConditionBtn" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="startMonitoringBtn" min="-2" max="-2" attributes="0"/>
+                                      <Component id="checkSeaConditionBtn" max="32767" attributes="0"/>
                                   </Group>
+                                  <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="140" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="findMaritimeSafetyServicebtn" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblStatusSafety" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -204,13 +195,11 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtAreaCode" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="checkSeaConditionBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtVesselId" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="startMonitoringBtn" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="201" max="32767" attributes="0"/>
@@ -235,9 +224,11 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtAreaCode">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Area Code Input"/>
+                <Property name="text" type="java.lang.String" value="Input Area Code"/>
               </Properties>
               <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtAreaCodeFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtAreaCodeFocusLost"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAreaCodeActionPerformed"/>
               </Events>
             </Component>
@@ -264,15 +255,15 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JLabel" name="jLabel1">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Vessel ID"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JTextField" name="txtVesselId">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Vessel ID Input"/>
+                <Property name="text" type="java.lang.String" value="Input Vessel ID"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtVesselIdFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtVesselIdFocusLost"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtVesselIdActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="startMonitoringBtn">
               <Properties>
@@ -281,11 +272,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startMonitoringBtnActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel2">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Area Code"/>
-              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -342,8 +328,8 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnStartVoyage" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jScrollPane2" min="-2" pref="177" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" pref="195" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -368,6 +354,10 @@
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Input Staff ID"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtStaffIdFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtStaffIdFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnGetPerformance">
               <Properties>
@@ -475,8 +465,12 @@
             <Component class="javax.swing.JTextField" name="txtTrainingStaffId">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Staff Name"/>
+                <Property name="text" type="java.lang.String" value="Input Staff Name"/>
               </Properties>
+              <Events>
+                <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTrainingStaffIdFocusGained"/>
+                <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTrainingStaffIdFocusLost"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnStartTraining">
               <Properties>

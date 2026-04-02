@@ -77,6 +77,13 @@ public class MaritimeSafetyServiceImpl extends MaritimeSafetyMonitorImplBase {
                     .build();
             responseObserver.onNext(alert2);
             
+            // Send Third Alert
+            SafetyAlert alert3 = SafetyAlert.newBuilder()
+                    .setAlertMessage("Be cautious, nearby vessel in <5 km radius.")
+                    .setRiskLevel(3)
+                    .build();
+            responseObserver.onNext(alert3);
+            
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
