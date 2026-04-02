@@ -152,6 +152,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Home", jPanel4);
 
+        findMaritimeSafetyServicebtn.setBackground(new java.awt.Color(235, 217, 52));
         findMaritimeSafetyServicebtn.setText("Find Service");
         findMaritimeSafetyServicebtn.addActionListener(this::findMaritimeSafetyServicebtnActionPerformed);
 
@@ -169,6 +170,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         });
         txtAreaCode.addActionListener(this::txtAreaCodeActionPerformed);
 
+        checkSeaConditionBtn.setBackground(new java.awt.Color(52, 128, 235));
+        checkSeaConditionBtn.setForeground(new java.awt.Color(242, 242, 242));
         checkSeaConditionBtn.setText("Check Conditions");
         checkSeaConditionBtn.addActionListener(this::checkSeaConditionBtnActionPerformed);
 
@@ -188,6 +191,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         });
         txtVesselId.addActionListener(this::txtVesselIdActionPerformed);
 
+        startMonitoringBtn.setBackground(new java.awt.Color(52, 128, 235));
+        startMonitoringBtn.setForeground(new java.awt.Color(242, 242, 242));
         startMonitoringBtn.setText("Start Monitoring Alerts");
         startMonitoringBtn.addActionListener(this::startMonitoringBtnActionPerformed);
 
@@ -237,6 +242,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Maritime Safety", jPanel2);
 
+        findTourOperationsServicebtn.setBackground(new java.awt.Color(235, 217, 52));
         findTourOperationsServicebtn.setText("Find Your Service");
         findTourOperationsServicebtn.addActionListener(this::findTourOperationsServicebtnActionPerformed);
 
@@ -254,14 +260,18 @@ public class KEVMS_GUI extends javax.swing.JFrame {
             }
         });
 
+        btnGetPerformance.setBackground(new java.awt.Color(52, 128, 235));
+        btnGetPerformance.setForeground(new java.awt.Color(242, 242, 242));
         btnGetPerformance.setText("Get Performance Score");
+        btnGetPerformance.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGetPerformance.addActionListener(this::btnGetPerformanceActionPerformed);
 
         txtResultTour.setColumns(20);
         txtResultTour.setRows(5);
         jScrollPane2.setViewportView(txtResultTour);
 
-        btnStartVoyage.setBackground(new java.awt.Color(153, 255, 153));
+        btnStartVoyage.setBackground(new java.awt.Color(52, 128, 235));
+        btnStartVoyage.setForeground(new java.awt.Color(242, 242, 242));
         btnStartVoyage.setText("Simulate Voyage Telemetry");
         btnStartVoyage.addActionListener(this::btnStartVoyageActionPerformed);
 
@@ -307,6 +317,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Tour Operations", jPanel1);
 
+        findTrainingHubServicebtn.setBackground(new java.awt.Color(235, 217, 52));
         findTrainingHubServicebtn.setText("Find Training Hub");
         findTrainingHubServicebtn.addActionListener(this::findTrainingHubServicebtnActionPerformed);
 
@@ -325,6 +336,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         });
         txtTrainingStaffId.addActionListener(this::txtTrainingStaffIdActionPerformed);
 
+        btnStartTraining.setBackground(new java.awt.Color(52, 128, 235));
+        btnStartTraining.setForeground(new java.awt.Color(242, 242, 242));
         btnStartTraining.setText("Start Navigation Simulation");
         btnStartTraining.addActionListener(this::btnStartTrainingActionPerformed);
 

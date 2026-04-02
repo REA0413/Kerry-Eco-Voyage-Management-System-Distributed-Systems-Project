@@ -214,6 +214,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="findMaritimeSafetyServicebtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="d9" red="eb" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find Service"/>
               </Properties>
               <Events>
@@ -240,6 +243,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="checkSeaConditionBtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="80" red="34" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Check Conditions"/>
               </Properties>
               <Events>
@@ -276,6 +285,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="startMonitoringBtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="80" red="34" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Start Monitoring Alerts"/>
               </Properties>
               <Events>
@@ -347,6 +362,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="findTourOperationsServicebtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="d9" red="eb" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find Your Service"/>
               </Properties>
               <Events>
@@ -373,7 +391,14 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnGetPerformance">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="80" red="34" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Get Performance Score"/>
+                <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGetPerformanceActionPerformed"/>
@@ -397,7 +422,10 @@
             <Component class="javax.swing.JButton" name="btnStartVoyage">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="99" green="ff" red="99" type="rgb"/>
+                  <Color blue="eb" green="80" red="34" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Simulate Voyage Telemetry"/>
               </Properties>
@@ -463,6 +491,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="findTrainingHubServicebtn">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="34" green="d9" red="eb" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Find Training Hub"/>
               </Properties>
               <Events>
@@ -490,6 +521,12 @@
             </Component>
             <Component class="javax.swing.JButton" name="btnStartTraining">
               <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="eb" green="80" red="34" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Start Navigation Simulation"/>
               </Properties>
               <Events>
