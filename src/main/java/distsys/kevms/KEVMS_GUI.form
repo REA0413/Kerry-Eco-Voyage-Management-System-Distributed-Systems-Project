@@ -37,6 +37,11 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
+      <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -158,25 +163,23 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtVesselId" max="32767" attributes="0"/>
-                                      <Component id="txtAreaCode" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="startMonitoringBtn" min="-2" max="-2" attributes="0"/>
-                                      <Component id="checkSeaConditionBtn" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtVesselId" max="32767" attributes="0"/>
+                                  <Component id="txtAreaCode" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="findMaritimeSafetyServicebtn" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblStatusSafety" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="startMonitoringBtn" min="-2" max="-2" attributes="0"/>
+                                  <Component id="checkSeaConditionBtn" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="findMaritimeSafetyServicebtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="lblStatusSafety" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -224,6 +227,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtAreaCode">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Input Area Code"/>
               </Properties>
               <Events>
@@ -257,6 +263,9 @@
             </Container>
             <Component class="javax.swing.JTextField" name="txtVesselId">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Input Vessel ID"/>
               </Properties>
               <Events>
@@ -351,6 +360,9 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtStaffId">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Input Staff ID"/>
               </Properties>
@@ -464,12 +476,16 @@
             </Component>
             <Component class="javax.swing.JTextField" name="txtTrainingStaffId">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="99" green="99" red="99" type="rgb"/>
+                </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Input Staff Name"/>
               </Properties>
               <Events>
                 <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTrainingStaffIdFocusGained"/>
                 <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="txtTrainingStaffIdFocusLost"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTrainingStaffIdActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JButton" name="btnStartTraining">

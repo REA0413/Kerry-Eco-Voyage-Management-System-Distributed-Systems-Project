@@ -95,6 +95,8 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTabbedPane1.setForeground(new java.awt.Color(153, 153, 153));
+
         btnNavSafety.setText("Maritime Safety");
         btnNavSafety.addActionListener(this::btnNavSafetyActionPerformed);
 
@@ -155,6 +157,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         lblStatusSafety.setText("Status: Disconnected");
 
+        txtAreaCode.setForeground(new java.awt.Color(153, 153, 153));
         txtAreaCode.setText("Input Area Code");
         txtAreaCode.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -173,6 +176,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         txtResultSafety.setRows(5);
         jScrollPane1.setViewportView(txtResultSafety);
 
+        txtVesselId.setForeground(new java.awt.Color(153, 153, 153));
         txtVesselId.setText("Input Vessel ID");
         txtVesselId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -195,21 +199,20 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtVesselId)
-                                .addComponent(txtAreaCode))
-                            .addGap(18, 18, 18)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(startMonitoringBtn)
-                                .addComponent(checkSeaConditionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(199, 199, 199))
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(findMaritimeSafetyServicebtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblStatusSafety)
-                            .addGap(138, 138, 138))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtVesselId)
+                            .addComponent(txtAreaCode))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(startMonitoringBtn)
+                            .addComponent(checkSeaConditionBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(199, 199, 199))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(findMaritimeSafetyServicebtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblStatusSafety)
+                        .addGap(138, 138, 138)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -239,6 +242,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         lblStatusTour.setText("Status: Disconnected");
 
+        txtStaffId.setForeground(new java.awt.Color(153, 153, 153));
         txtStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtStaffId.setText("Input Staff ID");
         txtStaffId.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -308,6 +312,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         lblStatusTraining.setText("Status: Disconnected");
 
+        txtTrainingStaffId.setForeground(new java.awt.Color(153, 153, 153));
         txtTrainingStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTrainingStaffId.setText("Input Staff Name");
         txtTrainingStaffId.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -318,6 +323,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                 txtTrainingStaffIdFocusLost(evt);
             }
         });
+        txtTrainingStaffId.addActionListener(this::txtTrainingStaffIdActionPerformed);
 
         btnStartTraining.setText("Start Navigation Simulation");
         btnStartTraining.addActionListener(this::btnStartTrainingActionPerformed);
@@ -701,6 +707,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // When the user is not clicking to the box, put the placeholder back.
         if (txtAreaCode.getText().isEmpty()) {
+            txtAreaCode.setForeground(new java.awt.Color(153, 153, 153));
             txtAreaCode.setText("Input Area Code");
         }
     }//GEN-LAST:event_txtAreaCodeFocusLost
@@ -717,6 +724,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // When the user is not clicking to the box, put the placeholder back.
         if (txtVesselId.getText().isEmpty()) {
+            txtVesselId.setForeground(new java.awt.Color(153, 153, 153));
             txtVesselId.setText("Input Vessel ID");
         }
     }//GEN-LAST:event_txtVesselIdFocusLost
@@ -733,6 +741,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // When the user is not clicking to the box, put the placeholder back.
         if (txtStaffId.getText().isEmpty()) {
+            txtStaffId.setForeground(new java.awt.Color(153, 153, 153));
             txtStaffId.setText("Input Staff ID");
         }
     }//GEN-LAST:event_txtStaffIdFocusLost
@@ -753,9 +762,14 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         // When the user is not clicking to the box, put the placeholder back.
         if (txtTrainingStaffId.getText().isEmpty()) {
+            txtTrainingStaffId.setForeground(new java.awt.Color(153, 153, 153));
             txtTrainingStaffId.setText("Input Staff Name");
         }
     }//GEN-LAST:event_txtTrainingStaffIdFocusLost
+
+    private void txtTrainingStaffIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTrainingStaffIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTrainingStaffIdActionPerformed
 
     /**
      * @param args the command line arguments
