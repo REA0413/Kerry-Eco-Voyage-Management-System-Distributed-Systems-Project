@@ -17,6 +17,7 @@ public class TourOperationsServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50052; // Using a different port for Service 2
         
+        // Old method if I want to connect the server with TourOperationsClient.java
 //        Server server = ServerBuilder.forPort(port)
 //                .addService(new TourOperationsServiceImpl())
 //                .build()
@@ -25,8 +26,6 @@ public class TourOperationsServer {
 //        System.out.println("Tour Operations Server started, listening on port: " + port);
 
         // Register with JmDNS
-        // Service Type is usually something like _http._tcp.local. 
-        // For gRPC, we can use _grpc._tcp.local.
         ServiceRegistration.registerService(port, "TourOperations", "_grpc._tcp.local.");
 
         Server server = ServerBuilder.forPort(port)
@@ -35,7 +34,7 @@ public class TourOperationsServer {
                 .start();
 
         System.out.println("Tour Operations server started...");
-
+        // Keep the server running until I manually kill it
         server.awaitTermination();
     }
 }

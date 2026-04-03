@@ -173,7 +173,9 @@
                                   <Component id="startMonitoringBtn" min="-2" max="-2" attributes="0"/>
                                   <Component id="checkSeaConditionBtn" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="199" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="stopMonitoringBtn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Component id="findMaritimeSafetyServicebtn" min="-2" max="-2" attributes="0"/>
@@ -203,6 +205,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtVesselId" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="startMonitoringBtn" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="stopMonitoringBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="201" max="32767" attributes="0"/>
@@ -297,6 +300,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startMonitoringBtnActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JButton" name="stopMonitoringBtn">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="3" green="3d" red="fc" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="f2" green="f2" red="f2" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Stop Monitoring Alerts"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="stopMonitoringBtnActionPerformed"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
@@ -330,7 +347,7 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="180" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="256" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -461,7 +478,7 @@
                                   <Component id="lblStatusTraining" min="-2" max="-2" attributes="0"/>
                                   <Component id="btnStartTraining" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="159" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="235" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

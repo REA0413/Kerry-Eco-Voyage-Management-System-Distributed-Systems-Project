@@ -14,8 +14,10 @@ import generated.grpc.CA.stafftraining.StaffTrainingHubGrpc.StaffTrainingHubImpl
 import generated.grpc.CA.stafftraining.TraineeAction;
 import io.grpc.stub.StreamObserver;
 
+// Extend the auto-generated ImplBase class
 public class StaffTrainingServiceImpl extends StaffTrainingHubImplBase {
-
+    
+    //Override the bidirectional RPC method
     @Override
     public StreamObserver<TraineeAction> interactiveNavigationTraining(StreamObserver<InstructorFeedback> responseObserver) {
         

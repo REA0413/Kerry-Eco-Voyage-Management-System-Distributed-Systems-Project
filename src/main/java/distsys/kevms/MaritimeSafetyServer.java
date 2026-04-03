@@ -15,10 +15,10 @@ import java.io.IOException;
 
 public class MaritimeSafetyServer {
     public static void main(String[] args) throws IOException, InterruptedException {
-        // 1. Define the port we want the server to run on
+        // 1. Define the port I want the server to run on
         int port = 50051;
         
-        // 2. Build the server and attach our Implementation class to it
+        // 2. Old method if I want to connect the server with MaritimeSafetyClient.java
 //        Server server = ServerBuilder.forPort(port)
 //                .addService(new MaritimeSafetyServiceImpl())
 //                .build()
@@ -26,9 +26,7 @@ public class MaritimeSafetyServer {
 //        
 //        System.out.println("Maritime Safety Server started, listening on port: " + port);
 
-        // Register with JmDNS
-        // Service Type is usually something like _http._tcp.local. 
-        // For gRPC, we can use _grpc._tcp.local.
+        // Register the service with JmDNS
         ServiceRegistration.registerService(port, "MaritimeSafety", "_grpc._tcp.local.");
 
         Server server = ServerBuilder.forPort(port)
@@ -37,9 +35,7 @@ public class MaritimeSafetyServer {
                 .start();
 
         System.out.println("Maritime Safety server started...");
-        server.awaitTermination();
-        
-        // 3. Keep the server running until we manually kill it
+        // 3. Keep the server running until I manually kill it
         server.awaitTermination();
     }
 }

@@ -17,6 +17,7 @@ public class StaffTrainingServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         int port = 50053; // Unique port for Service 3
         
+        // 2. Old method if I want to connect the server with StaffTrainingClient.java
 //        Server server = ServerBuilder.forPort(port)
 //                .addService(new StaffTrainingServiceImpl())
 //                .build()
@@ -25,8 +26,6 @@ public class StaffTrainingServer {
 //        System.out.println("Staff Training Simulator Server started, listening on port: " + port);
 
         // Register with JmDNS
-        // Service Type is usually something like _http._tcp.local. 
-        // For gRPC, we can use _grpc._tcp.local.
         ServiceRegistration.registerService(port, "StaffTraining", "_grpc._tcp.local.");
 
         Server server = ServerBuilder.forPort(port)
@@ -35,6 +34,7 @@ public class StaffTrainingServer {
                 .start();
 
         System.out.println("Staff Training Safety server started...");
+        // Keep the server running until I manually kill it
         server.awaitTermination();
     }
 }

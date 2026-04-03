@@ -16,15 +16,16 @@ import generated.grpc.CA.touroperations.TourOperationsTrackerGrpc.TourOperations
 import generated.grpc.CA.touroperations.VoyageSummary;
 import io.grpc.stub.StreamObserver;
 
+//Extend the auto-generated ImplBase class
 public class TourOperationsServiceImpl extends TourOperationsTrackerImplBase {
 
-    // --- Functionality 2: Simple RPC ---
+    // Override the Simple/Unary RPC method
     @Override
     public void getStaffPerformance(StaffRequest request, StreamObserver<PerformanceScore> responseObserver) {
         int staffId = request.getStaffId();
         System.out.println("Fetching performance for Staff ID: " + staffId);
 
-        // Mock logic based on your proposal
+        // Mock data and logic
         float efficiency = (staffId == 541) ? 0.92f : 0.75f;
 
         PerformanceScore score = PerformanceScore.newBuilder()
@@ -35,7 +36,7 @@ public class TourOperationsServiceImpl extends TourOperationsTrackerImplBase {
         responseObserver.onCompleted();
     }
 
-    // --- Functionality 1: Client-Side Streaming RPC ---
+    // Override the Client-Side Streaming method
     @Override
     public StreamObserver<TelemetryData> recordVoyageTelemetry(StreamObserver<VoyageSummary> responseObserver) {
         

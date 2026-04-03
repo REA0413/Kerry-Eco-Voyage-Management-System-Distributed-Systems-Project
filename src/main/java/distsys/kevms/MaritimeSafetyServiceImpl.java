@@ -19,20 +19,20 @@ import io.grpc.stub.StreamObserver;
 // 1. Extend the auto-generated ImplBase class
 public class MaritimeSafetyServiceImpl extends MaritimeSafetyMonitorImplBase {
 
-    // 2. Override the Simple RPC method
+    // 2. Override the Simple/Unary RPC method
     @Override
     public void checkSeaConditions(ConditionRequest request, StreamObserver<ConditionReport> responseObserver) {
         
-        // Find out what area the client is asking about
+        // Find out which area the client is asking about
         int areaCode = request.getAreaCode();
         System.out.println("Received diagnostic request for Area Code: " + areaCode);
         
-        // Mocking some data based on the proposal
+        // Mock data
         float wave = 1.5f;
         float wind = 12.4f;
         boolean safe = true;
         
-        // If it's a different area, maybe the weather is worse
+        // Area Code 999 will always be dangerous
         if (areaCode == 999) {
             wave = 4.5f;
             wind = 30.0f;
@@ -68,7 +68,7 @@ public class MaritimeSafetyServiceImpl extends MaritimeSafetyMonitorImplBase {
                     .build();
             responseObserver.onNext(alert1);
             
-            Thread.sleep(2000); // Wait 2 seconds to simulate time passing
+            Thread.sleep(3000); // Wait 3 seconds to simulate time passing
             
             // Send Second Alert
             SafetyAlert alert2 = SafetyAlert.newBuilder()
@@ -76,6 +76,8 @@ public class MaritimeSafetyServiceImpl extends MaritimeSafetyMonitorImplBase {
                     .setRiskLevel(4)
                     .build();
             responseObserver.onNext(alert2);
+            
+            Thread.sleep(3000); // Wait 3 seconds to simulate time passing
             
             // Send Third Alert
             SafetyAlert alert3 = SafetyAlert.newBuilder()
