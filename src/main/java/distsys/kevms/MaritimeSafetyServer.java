@@ -12,6 +12,7 @@ package distsys.kevms;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import java.io.IOException;
+import io.grpc.ServerInterceptors;
 
 public class MaritimeSafetyServer {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -28,9 +29,10 @@ public class MaritimeSafetyServer {
 
         // Register the service with JmDNS
         ServiceRegistration.registerService(port, "MaritimeSafety", "_grpc._tcp.local.");
-
+        
+        //adding interceptor in the server builder to showcase authentication
         Server server = ServerBuilder.forPort(port)
-                .addService(new MaritimeSafetyServiceImpl())
+                .addService(ServerInterceptors.intercept(new MaritimeSafetyServiceImpl(), new AuthInterceptor()))
                 .build()
                 .start();
 
