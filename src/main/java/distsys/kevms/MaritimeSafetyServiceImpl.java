@@ -23,6 +23,9 @@ public class MaritimeSafetyServiceImpl extends MaritimeSafetyMonitorImplBase {
     @Override
     public void checkSeaConditions(ConditionRequest request, StreamObserver<ConditionReport> responseObserver) {
         
+        //the below code is only for testing purposes
+//        try { Thread.sleep(6000); } catch (InterruptedException e) {}
+        
         // Find out which area the client is asking about
         int areaCode = request.getAreaCode();
         System.out.println("Received diagnostic request for Area Code: " + areaCode);

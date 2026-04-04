@@ -33,7 +33,7 @@ public class StaffTrainingServiceImpl extends StaffTrainingHubImplBase {
                 System.out.println("Received Action from " + staffId + " -> Rudder: " + rudderAngle + ", Throttle: " + action.getEngineThrottle());
                 
                 // --- Simulator Logic ---
-                // Let's pretend the correct rudder angle to avoid a rock is exactly 10.0 degrees
+                // Assume the correct rudder angle to avoid a rock is exactly 10.0 degrees
                 float targetAngle = 10.0f;
                 float errorMargin = Math.abs(rudderAngle - targetAngle);
                 

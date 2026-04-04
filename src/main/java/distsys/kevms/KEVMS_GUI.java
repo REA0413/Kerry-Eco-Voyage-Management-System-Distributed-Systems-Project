@@ -335,7 +335,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
 
         txtTrainingStaffId.setForeground(new java.awt.Color(153, 153, 153));
         txtTrainingStaffId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtTrainingStaffId.setText("Input Staff Name");
+        txtTrainingStaffId.setText("Input Staff ID");
         txtTrainingStaffId.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 txtTrainingStaffIdFocusGained(evt);
@@ -416,7 +416,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
             return;
         }
 
-        // NEW: If a stream is already running, cancel it before starting a new one
+        // If a stream is already running, cancel it before starting a new one
         if (safetyStreamContext != null && !safetyStreamContext.isCancelled()) {
             safetyStreamContext.cancel(null);
         }
@@ -424,7 +424,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         new Thread(() -> {
             ManagedChannel channel = ManagedChannelBuilder.forAddress(safetyHost, safetyPort).usePlaintext().build();
             
-            // NEW: Assign the context to our class-level variable instead of a local one
+            // Assign the context to class-level variable instead of a local one
             safetyStreamContext = Context.current().withCancellation();
             
             safetyStreamContext.run(() -> {
@@ -486,6 +486,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
             Metadata header = new Metadata();
             Metadata.Key<String> key = Metadata.Key.of("auth-token", Metadata.ASCII_STRING_MARSHALLER);
             header.put(key, "kevms-secure-token-123");
+//            header.put(key, "kevms-WRONG-token");//this line is for testing purposes only
 
             // Attach Metadata to Stub
             MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub = 
@@ -784,7 +785,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     private void txtTrainingStaffIdFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTrainingStaffIdFocusGained
         // TODO add your handling code here:
         // When I click into the box, if the text is still the placeholder, clear it.
-        if (txtTrainingStaffId.getText().equals("Input Staff Name")) {
+        if (txtTrainingStaffId.getText().equals("Input Staff ID")) {
             txtTrainingStaffId.setText("");
             txtTrainingStaffId.setForeground(java.awt.Color.BLACK);
         }
@@ -795,7 +796,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
         // When the user is not clicking to the box, put the placeholder back.
         if (txtTrainingStaffId.getText().isEmpty()) {
             txtTrainingStaffId.setForeground(new java.awt.Color(153, 153, 153));
-            txtTrainingStaffId.setText("Input Staff Name");
+            txtTrainingStaffId.setText("Input Staff ID");
         }
     }//GEN-LAST:event_txtTrainingStaffIdFocusLost
 
