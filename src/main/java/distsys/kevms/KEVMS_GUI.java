@@ -411,6 +411,7 @@ public class KEVMS_GUI extends javax.swing.JFrame {
     
     private void startMonitoringBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startMonitoringBtnActionPerformed
         // TODO add your handling code here:
+        // Check if service is found
         if (safetyHost == null || safetyPort == 0) {
             txtResultSafety.append("Error: Please click 'Find Service' first!\n");
             return;
@@ -431,12 +432,23 @@ public class KEVMS_GUI extends javax.swing.JFrame {
                 try {
                     int vesselId = Integer.parseInt(txtVesselId.getText());
 
+                    // 1. Create the base stub
                     MaritimeSafetyMonitorGrpc.MaritimeSafetyMonitorBlockingStub stub = 
                             MaritimeSafetyMonitorGrpc.newBlockingStub(channel);
+
+                    // 2. --- NEW METADATA SECURITY CODE ---
+                    Metadata header = new Metadata();
+                    Metadata.Key<String> authKey = Metadata.Key.of("auth-token", Metadata.ASCII_STRING_MARSHALLER);
+                    header.put(authKey, "kevms-secure-token-123");
+
+                    // 3. Attach the header to create a SECURE stub
+                    stub = MetadataUtils.attachHeaders(stub, header);
+                    // ---------------------------------------
 
                     VesselRequest request = VesselRequest.newBuilder().setVesselId(vesselId).build();
                     javax.swing.SwingUtilities.invokeLater(() -> txtResultSafety.append(">>> Starting alert monitor for Vessel: " + vesselId + "\n"));
 
+                    // 4. Call the stream using the SECURE stub
                     java.util.Iterator<SafetyAlert> alerts = stub.streamEmergencyAlerts(request);
 
                     int alertCount = 0;
